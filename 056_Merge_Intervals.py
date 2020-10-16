@@ -3,7 +3,9 @@ class Solution:
         
         # first sort each interval based on first element
         # python sort function needs O(nlogn) 
-        intervals.sort(key=lambda x:x[0])
+        
+        # can use below function too 
+        # intervals.sort(key=lambda x:x[0])
         
         merged = []
         
