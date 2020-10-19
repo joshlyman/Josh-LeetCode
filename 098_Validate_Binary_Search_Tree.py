@@ -9,7 +9,7 @@ class Solution:
         
         return self.validBST(root,-inf,inf)
         
-        
+
     def validBST(self,root,min,max):
          
         if root is None:
@@ -18,9 +18,12 @@ class Solution:
         if root.val <= min or root.val >= max:
             return False
         
+
+        # BFS: check each left and right leaf node every time 
+
         # upper bound for left node is val of node 
         # lower bound for right node is val of node
         return self.validBST(root.left,min,root.val) and self.validBST(root.right,root.val,max) 
         
 # Time: O(n)
-# Space: O(n)     
+# Space: O(n), worst case if it is unbalanced. But if it is balanced, it will be O(h) or O(logN), where h is the height of tree 
