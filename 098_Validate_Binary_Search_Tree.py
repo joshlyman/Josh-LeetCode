@@ -19,7 +19,7 @@ class Solution:
             return False
         
 
-        # BFS: check each left and right leaf node every time 
+        # BFS: check each left and right child or leaf (no child) node every time 
 
         # upper bound for left node is val of node 
         # lower bound for right node is val of node
