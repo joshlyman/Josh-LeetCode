@@ -1,3 +1,5 @@
+# Explanation: https://www.youtube.com/watch?v=Hi5obC_CwIU&ab_channel=ByteByByte
+
 # OrderedDict combines both hashmap and linked list
 
 # 1. Get the key / Check if the key exists, move to the end 
