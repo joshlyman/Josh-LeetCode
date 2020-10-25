@@ -1,22 +1,39 @@
-# iterative
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
 class Solution:
     def reverseList(self, head: ListNode) -> ListNode:
-        if not head:
-            return None
         
-        prev = None
-        curr = head
+        prev = None  
+        cur = head 
         
-        while curr:
-            nex = curr.next 
-            curr.next = prev
-            prev = curr 
-            curr = nex 
-        
+        while cur:
+            
+        # switch current node with prev node 
+            1->2: prev: None, 1: cur, 2: Next 
+            Next = cur.next 
+            # prev: none, 1->NULL
+            cur.next = prev 
+            
+            # shift to the left:  
+            # cur: 1, prev: none
+            prev = cur
+            
+            # the most important to understand here:
+            # Next:2,becomes to current node
+            cur = Next
+            
+            # or: cur.next, prev, cur = prev, cur, cur.next
+            # 3,1,2 = 1,2,3
         return prev 
+
 
 # Time: O(N)
 # Space:O(1)
+
+
 
 
 # simpler code:
