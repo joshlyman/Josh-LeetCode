@@ -1,20 +1,6 @@
 # refer from:
 # https://leetcode.com/problems/flatten-binary-tree-to-linked-list/solution/
 
-# 1.BFS 
-
-# If we have say, 4 nodes in a row with depth 3 and positions 0, 1, 2, 3; and we want 8 new nodes 
-# in a row with depth 4 and positions 0, 1, 2, 3, 4, 5, 6, 7; then we can see that the rule for 
-# going from a node to its left child is (depth, position) -> (depth + 1, position * 2), and the 
-# rule for going from a node to its right child is (depth, position) -> (depth + 1, position * 2 + 1).
-
-# Then, our row at depth dd is completely filled if it has 2^{d-1} nodes, and all the nodes in the 
-# last level are left-justified when their positions take the form 0, 1, ... in sequence with no gaps.
-
-
-
-
-
 # 2. Iterative Morris traversal  
 class Solution:
     
