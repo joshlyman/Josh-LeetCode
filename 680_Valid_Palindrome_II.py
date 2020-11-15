@@ -19,6 +19,36 @@ class Solution:
         
         # if all matches, no need to delete char 
         return True 
+# Time: O(N)
+# Space:O(N) because of additional memort from subarray 1 and 2
+
+
+# my solution
+class Solution:
+    def validPalindrome(self, s: str) -> bool:
         
+        left,right = 0,len(s)-1
+        
+        while left< right:
+            if s[left] == s[right]:
+                left +=1
+                right -=1
+            else:
+                # skip left or right element to compare remaining elements
+                return self.helper(s, left +1,right) or self.helper(s,left,right-1)
+        
+        # must be careful here for those true example when done, for example, aba 
+        return True 
+        
+    def helper(self,s,left,right):
+        
+        while left< right:
+            if s[left] == s[right]:
+                left +=1
+                right -=1
+            else:
+                return False
+        return True 
+
 # Time: O(N)
 # Space:O(1)
