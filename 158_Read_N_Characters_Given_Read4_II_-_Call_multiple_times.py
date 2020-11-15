@@ -35,3 +35,27 @@ class Solution:
 
 # Time: O(N)
 # Space:O(N)
+
+# my solution 
+class Solution:
+    def __init__(self):
+        self.queue = []
+
+    def read(self, buf, n):
+        i = 0
+
+        # loop until n data into buf 
+        while i < n:
+            if self.queue:
+                buf[i] = self.queue.pop(0)
+                i += 1
+            else:
+                buf4 = ['']*4
+                v = read4(buf4)
+
+                # no more words left 
+                if v == 0:
+                    break
+                # add more data inside queue
+                self.queue += buf4[:v]
+        return i
