@@ -20,6 +20,8 @@ class Solution:
     def singleNonDuplicate(self, nums: List[int]) -> int:
         lo, hi = 0, len(nums) - 1
         while lo < hi:
+
+        	# or we can use %2 to see if mid is even or not 
             mid = 2 * ((lo + hi) // 4)
             if nums[mid] == nums[mid+1]:
                 lo = mid+2
@@ -28,4 +30,4 @@ class Solution:
         return nums[lo]
 
 # Time: O(logN)
-# Space:O(1)
+# Space:O(1)  
