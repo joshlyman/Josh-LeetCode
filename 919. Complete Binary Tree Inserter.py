@@ -43,5 +43,5 @@ class CBTInserter:
 # param_1 = obj.insert(v)
 # param_2 = obj.get_root()
 
-Time: O(N)
-Space:O(N)
+# Time: O(N)
+# Space:O(N)
