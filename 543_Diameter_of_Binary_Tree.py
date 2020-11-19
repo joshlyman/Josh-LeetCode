@@ -11,22 +11,20 @@
 
 class Solution:
     def diameterOfBinaryTree(self, root: TreeNode) -> int:
-        """
-        :type root: TreeNode
-        :rtype: int
-        """
-        self.ans = 0
+        self.ans = 1
         
         def depth(p):
-            if not p: return 0
-            left= depth(p.left)
+            if not p:
+                return 0
+            
+            left = depth(p.left)
             right = depth(p.right)
-            self.ans = max(self.ans, left+right)
-            diameter = 1 + max(left, right)
-            return diameter
+            
+            self.ans = max(self.ans,left+right+1)
+            return max(left,right)+1
             
         depth(root)
-        return self.ans
+        return self.ans-1
 
 
 # Time: O(N), we visit every node once.
