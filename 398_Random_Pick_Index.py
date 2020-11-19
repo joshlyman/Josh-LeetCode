@@ -8,6 +8,9 @@ class Solution:
         for i, num in enumerate(self.nums):
             if num != target:
                 continue
+            
+            # next is if num == target, then we start to count the element
+            # but at the same time, we need to make sure idx can be any of previous location 
             if cnt == 0:
                 idx = i
                 cnt = 1
@@ -23,6 +26,11 @@ class Solution:
                 cnt += 1
 
         return idx
+
+
+# Your Solution object will be instantiated and called as such:
+# obj = Solution(nums)
+# param_1 = obj.pick(target)
 
 
 # Your Solution object will be instantiated and called as such:
