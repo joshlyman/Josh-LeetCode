@@ -26,7 +26,8 @@ class Solution:
         l, r = k+1, len(nums)-1  
         while l < r:
             nums[l], nums[r] = nums[r], nums[l]
-            l +=1 ; r -= 1
+            l +=1 
+            r -= 1
 
 # refer from https://leetcode.com/problems/next-permutation/solution/
 

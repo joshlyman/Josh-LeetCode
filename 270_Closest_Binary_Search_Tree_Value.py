@@ -15,9 +15,14 @@ class Solution:
         
         
         travelist = inorder(root)
-        closenodevalue = min(travelist,key=lambda x:abs(x-target))
+        # closenodevalue = min(travelist,key=lambda x:abs(x-target))
+        # return closenodevalue 
         
-        return closenodevalue 
+        abstravelist = [abs(x-target) for x in travelist]
+        idx = abstravelist.index(min(abstravelist))
+        return travelist[idx]
+        
+
 
 # Time: O(N)
 # Space:O(N)

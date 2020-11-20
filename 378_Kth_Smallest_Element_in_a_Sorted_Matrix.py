@@ -17,11 +17,10 @@ class Solution(object):
             ans = heapq.heappop(vals)
         return ans
 
-# Time: O(N^2)
+# Time: O(klogN)
 
-# Heapify: O(nn)
+# Heapify: O(logN)
 # k times pop : O(k log(n2)) which becomes O(klogn)
-# Therefore time complexity is: O(n*n)
 
 # Space:O(N^2)
 
