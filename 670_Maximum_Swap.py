@@ -4,6 +4,8 @@
 # Afterwards, when scanning the number from left to right, if there is a larger digit in the future, we will swap it 
 # with the largest such digit; if there are multiple such digits, we will swap it with the one that occurs the latest.
 
+
+# Greedy 
 # One pass 
 # Basic idea:
 # Find a index i, where there is a increasing order
