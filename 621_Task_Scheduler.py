@@ -23,6 +23,16 @@
 
 # Return busy slots + idle slots: len(tasks) + idle_time.
 
+
+
+# Why use f_max-1 when subtracting idle time?
+# Let's say you have 4 As and 4 Bs.
+# After you place the As. You have 3 slots between the As to put the Bs.
+# So number of idle slots that B can occupy is min(3,4). 
+# Rest of the Bs (the last B) would occupy after the last A. 
+# It handles the edge case where there are more than one letter with highest frequency
+
+
 class Solution:
     def leastInterval(self, tasks: List[str], n: int) -> int:
         freq = [0] * 26
