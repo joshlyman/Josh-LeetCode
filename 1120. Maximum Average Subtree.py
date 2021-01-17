@@ -4,6 +4,8 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+
+# DFS recursion 
 class Solution:
     def maximumAverageSubtree(self, root: TreeNode) -> float:
         
