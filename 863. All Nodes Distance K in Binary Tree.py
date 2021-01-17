@@ -39,3 +39,58 @@ class Solution:
 
 # Time: O(N)
 # Space:O(N)
+
+
+
+# V2
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def distanceK(self, root: TreeNode, target: TreeNode, K: int) -> List[int]:
+        # build graph: graph consists of node as key with nei nodes as value 
+        self.g = collections.defaultdict(list)
+        self.convert_to_graph(root,None)
+        
+        # build queue to store node waitting to be visited 
+        self.queue = collections.deque()
+        self.visited = set()
+        self.res = []
+        
+        # start from target node 
+        self.queue.append((target,0))
+        
+        while self.queue:
+            node,dist = self.queue.popleft()
+            self.visited.add(node)
+            
+            if dist == K:
+                self.res.append(node.val)
+            
+            for nei in self.g[node]:
+                if nei not in self.visited:
+                    self.queue.append((nei,dist+1))            
+        
+        return self.res 
+        
+    # build a graph first to make each node as key and 
+    def convert_to_graph(self,node,parent):
+        if not node:
+            return 
+        
+        if parent:
+            self.g[node].append(parent)
+            
+        if node.right:
+            self.g[node].append(node.right)
+            self.convert_to_graph(node.right,node)
+        
+        if node.left:
+            self.g[node].append(node.left)
+            self.convert_to_graph(node.left,node)
+            

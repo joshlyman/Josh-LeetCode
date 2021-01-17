@@ -21,3 +21,39 @@ class Solution:
 # Then, we sort each string in O(KlogK) time.
 
 # Space: O(NK)
+
+
+# V2 
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        d = {}
+        for w in sorted(strs):
+            key = tuple(sorted(w))
+            
+            if key not in d: 
+                d[key] = [w]
+            else:
+                d[key].append(w)
+            
+        return d.values()
+
+# Use letters dict to replace the tuple of string 
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        d = {}
+        
+        for s in strs:
+            count = [0]*26
+            for c in s:
+                count[ord(c)-ord('a')]+=1
+            
+            if tuple(count) not in d:
+                d[tuple(count) ] = [s]
+            else:
+                d[tuple(count) ].append(s)
+        
+        return d.values()
+ 
+# Time: O(NK)
+# Space:O(NK)       
+
