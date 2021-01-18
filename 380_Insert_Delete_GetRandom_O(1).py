@@ -40,7 +40,9 @@ class RandomizedSet():
         return choice(self.list)
 
 # Time: O(N) for worst case. 
-# GetRandom is always O(1). Insert and Delete both have O(1) average time complexity, and O(N) in the worst-case scenario when the operation exceeds the capacity of currently allocated array/hashmap and invokes space reallocation.
+# GetRandom is always O(1). Insert and Delete both have O(1) average time complexity, 
+# and O(N) in the worst-case scenario when the operation exceeds the capacity of currently 
+# allocated array/hashmap and invokes space reallocation.
 
 # Space:O(N), to store N elements.
 
@@ -50,3 +52,69 @@ class RandomizedSet():
 # param_1 = obj.insert(val)
 # param_2 = obj.remove(val)
 # param_3 = obj.getRandom()
+
+# V2 
+
+class RandomizedSet:
+
+    def __init__(self):
+        """
+        Initialize your data structure here.
+        """
+        self.dict = {}
+        self.list = []
+        
+    def insert(self, val: int) -> bool:
+        """
+        Inserts a value to the set. Returns true if the set did not already contain the specified element.
+        """
+        
+        # if use in list, it will take O(n)
+        if val in self.dict:
+            return False 
+        
+        self.dict[val] = len(self.list)
+        self.list.append(val)
+        return True 
+
+    def remove(self, val: int) -> bool:
+        """
+        Removes a value from the set. Returns true if the set contained the specified element.
+        """
+        
+        # we cannot use list.remove because it will take O(N)
+        # so only way is to move element to the last index and pop it 
+        
+        if val in self.dict:
+            # idx of the item need to be removed 
+            idx = self.dict[val]
+            
+            # last element in the list 
+            last_item = self.list[-1]
+            
+            # move the last element into index of removed item by replacing the removed item with the last item   
+            self.list[idx] = last_item 
+            
+            # give the last element the index of removed item
+            self.dict[last_item] = idx 
+            
+            # now need to remove 
+            self.list.pop()
+            del self.dict[val]
+            
+            return True 
+        return False 
+        
+    def getRandom(self) -> int:
+        """
+        Get a random element from the set.
+        """
+        return random.choice(self.list)
+
+# Your RandomizedSet object will be instantiated and called as such:
+# obj = RandomizedSet()
+# param_1 = obj.insert(val)
+# param_2 = obj.remove(val)
+# param_3 = obj.getRandom()
+
+
