@@ -72,6 +72,66 @@ def reorganizeString(S):
 # Space:O(A), If A is fixed, this complexity is O(1).
 
 
-
+# V2
+class Solution:
+    def reorganizeString(self, S: str) -> str:
+        if not S:
+            return ""
+        
+        d = {}
+        for s in S:
+            if s not in d:
+                d[s] =1
+            else:
+                d[s]+=1
+    
+        # use min heap to push (-nums, char) and char of max nums will be poped out first 
+        h = []
+        
+        import heapq
+        heapq.heapify(h)
+        
+        res = ""
+        for k in d:
+            heapq.heappush(h,(-d[k],k))
+        
+        while len(h)>1:
+            f1,c1 = heapq.heappop(h)
+            f2,c2 = heapq.heappop(h)
+            
+            res+=c1
+            res+=c2
+            
+            if abs(f1)>1:
+                heapq.heappush(h,(f1+1,c1))
+            
+            if abs(f2)>1:
+                heapq.heappush(h,(f2+1,c2))
+                
+        if len(h)>0:
+            f,c = heapq.heappop(h)
+            
+            if abs(f)>1:
+                return ""
+            else:
+                res+=c
+        return res 
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+        
+        
+        
 
 
