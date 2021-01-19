@@ -63,3 +63,50 @@ class Solution:
 
 # Time: O(N)
 # Space:O(1)
+
+
+# V2
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def swapPairs(self, head: ListNode) -> ListNode:
+        if not head or not head.next:
+            return head 
+        
+#         first,second = head,head.next 
+        
+#         first.next = self.swapPairs(second.next)
+#         second.next = first 
+        
+#         return second 
+
+        dummy = ListNode(0)
+        dummy.next = head 
+        prev = dummy 
+        
+        while head and head.next:
+            first,second = head,head.next 
+            
+            # swap nodes
+            # 0->2
+            prev.next = second 
+            # 1->3
+            first.next = second.next 
+            # 2->1
+            second.next = first 
+            
+            # prev is now 2 
+            prev = first 
+            # start from 3
+            head = first.next 
+            
+        return dummy.next
+            
+    
+    
+    
+        
+        
