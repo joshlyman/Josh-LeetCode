@@ -8,10 +8,13 @@ class Solution(object):
         """
         start = -1
         max = 0
+
+        # store element and its index 
         d = {}
         
         for i in range(len(s)):
             if s[i] in d and d[s[i]]>start:
+                # reset the start index if meet same elements again 
                 start = d[s[i]]
                 d[s[i]] = i
             else:
