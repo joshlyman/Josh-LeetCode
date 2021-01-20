@@ -1,3 +1,14 @@
+# https://leetcode.com/problems/next-permutation/discuss/545263/Python-3-Easy-to-understand
+
+# 1　　2　　7　　4　　3　　1   find 2 -> first element which is smaller that next element 
+
+# 1　　2　　7　　4　　3　　1   find 3 -> smallest emlement which is larget that 2
+
+# 1　　3　　7　　4　　2　　1   swap 2 and 3
+
+# 1　　3　　[1　　2　　4　　7]   sort nums after 3
+
+
 class Solution:
     def nextPermutation(self, nums: List[int]) -> None:
         """

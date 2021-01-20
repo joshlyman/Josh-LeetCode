@@ -13,6 +13,7 @@ class Solution:
     def helper(self,l,r,item,result):
         
         # l and r means # of remaining parenthesis 
+        # l must always larger than r because left parathesis should always have more than right one 
         
         if r < l:
             return 
@@ -26,5 +27,7 @@ class Solution:
         if r>0:
             self.helper(l,r-1,item+")", result)
 
-# Time: O(n)
-# Space:O(1)
+# https://leetcode.com/problems/generate-parentheses/solution/
+
+# Time: O(4^n/sqrt(n))
+# Space:O(4^n/sqrt(n))

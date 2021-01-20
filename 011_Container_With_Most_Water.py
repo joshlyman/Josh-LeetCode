@@ -11,6 +11,8 @@ class Solution:
                 maxarea = area
             
             if height[end]>height[start]:
+
+                # explore new start to increasing height of start 
                 start+=1
             else:
                 end-=1

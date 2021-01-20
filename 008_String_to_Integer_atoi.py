@@ -1,6 +1,7 @@
 class Solution:
     def myAtoi(self, s: str) -> int:
         ###better to do strip before sanity check (although 8ms slower):
+        # remove all empty strings to remain the real letters or numbers in strings 
         
         ls = list(s.strip())
         

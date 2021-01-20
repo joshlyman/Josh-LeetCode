@@ -1,6 +1,13 @@
 class Solution:
     def convert(self, s: str, numRows: int) -> str:
+    
+
+        # rows:  123 21  23  21
+        # steps: 11 -1-1 11 -1-1 
         
+        # rows:  1234 321 234
+        # steps: 111 -1-1-1 111 -1-1-1
+      
         if numRows == 1 or numRows >= len(s):
             return s 
         
@@ -21,8 +28,8 @@ class Solution:
         
         return ''.join(zigzag)
         
-Time: O(N)
-Space:O(N)        
+# Time: O(N)
+# Space:O(N)        
         
         
         
