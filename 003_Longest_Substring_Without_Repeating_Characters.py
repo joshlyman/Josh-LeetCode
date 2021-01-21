@@ -12,6 +12,11 @@ class Solution(object):
         # store element and its index 
         d = {}
         
+        # abcadb 
+        # start = 0
+        # d[a] =3
+        # d[d] = 4
+        # 4-0 = 4
         for i in range(len(s)):
             if s[i] in d and d[s[i]]>start:
                 # reset the start index if meet same elements again 
