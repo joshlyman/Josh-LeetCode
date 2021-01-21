@@ -16,23 +16,22 @@ class Solution:
                 res.append([num]+y)
                 
         return res 
-    
+
+# V2
 class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:    
     
-    # DFS + Backtracking
-    # DFS
-#     def permute(self, nums):
-#         res = []
-#         self.dfs(nums, [], res)
-#         return res
+    # DFS / Backtracking
+        res = []
+        self.dfs(nums, [], res)
+        return res
 
-#     def dfs(self, nums, path, res):
-#         if not nums:
-#             res.append(path)
-#             # return # backtracking
-#         for i in xrange(len(nums)):
-#             self.dfs(nums[:i]+nums[i+1:], path+[nums[i]], res)
+    def dfs(self, nums, path, res):
+        if not nums:
+            res.append(path)
+            # return # backtracking
+        for i in xrange(len(nums)):
+            self.dfs(nums[:i]+nums[i+1:], path+[nums[i]], res)
     
 # Time: O(NxN!)
 # Space: O(N!)

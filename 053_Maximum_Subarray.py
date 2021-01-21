@@ -33,6 +33,26 @@ class Solution:
 # Time: O(n)
 # Space:O(1)     
         
+# sliding window
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        if len(nums) == 0:
+            return 0
         
+        result = max(nums)
+        i = 0
         
-
+        temp = 0
+        while i < len(nums):
+            temp += nums[i]
+            if temp < 0:
+                temp = 0
+                i += 1
+            else:
+                result = max(temp, result)
+                i += 1
+        
+        return result
+        
+# Time: O(n)
+# Space:O(1) 
