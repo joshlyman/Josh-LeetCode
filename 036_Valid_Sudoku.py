@@ -17,6 +17,7 @@ class Solution:
     def is_square_valid(self,board):
         for i in (0,3,6):
             for j in (0,3,6):
+                # check each square 
                 square = [board[x][y] for x in range(i,i+3) for y in range(j,j+3)]
                 if not self.is_unit_valid(square):
                     return False
@@ -26,6 +27,7 @@ class Solution:
         
         unit = [i for i in unit if i!='.']
         
+        # this can see if they are duplicated: get all numbers out and check if length of set is equal to length of all units
         return len(set(unit)) == len(unit)
 
 # Time: O(3*n*m)

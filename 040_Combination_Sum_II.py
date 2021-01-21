@@ -17,7 +17,10 @@ class Solution:
             for i in range(start,len(candidates)):
                 
                 
-                # # Very important here! We don't use `i > 0` because we always want to count the first element in this recursive step even if it is the same as one before. To avoid overcounting, we just ignore the duplicates after the first element.
+                # # Very important here! We don't use `i > 0` 
+                # because we always want to count the first element in this 
+                # recursive step even if it is the same as one before. 
+                # To avoid overcounting, we just ignore the duplicates after the first element.
                 if i > start and candidates[i] == candidates[i-1]:
                     continue 
                 
@@ -37,3 +40,34 @@ class Solution:
 # Let N be the number of candidates, so here should be total # of combinations 
 
 # Space:O(N)
+
+# V2
+class Solution:
+    def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
+        
+        res = []
+        
+        # difference with combination sum I
+        candidates.sort()
+        self.backtrack(0,candidates,target,[],res)
+        return res 
+        
+    
+    def backtrack(self,start,candidates,target,path,res):
+        if target <0:
+            return 
+        
+        if target ==0:
+            res.append(path)
+            return 
+        
+        for i in range(start,len(candidates)):
+            
+            # difference with combination sum I
+            if i > start and candidates[i] == candidates[i-1]:
+                continue 
+                
+            self.backtrack(i+1,candidates,target-candidates[i],path+[candidates[i]],res)
+            
+        
+        
