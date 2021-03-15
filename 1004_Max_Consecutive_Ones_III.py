@@ -20,6 +20,25 @@
 
 # Once we have a window which has more than the allowed number of 0's, we can move the left pointer ahead one by one until we encounter 0 on the left too. This step ensures we are throwing out the extra zero.
 
+
+
+class Solution:
+    def longestOnes(self, A: List[int], K: int) -> int:
+        
+        left = 0
+        
+        for right in range(len(A)):
+            if A[right] == 0:
+                K-=1
+            
+            if K <0:
+                if A[left] == 0:
+                    K+=1                
+                left+=1
+        
+        return right - left + 1
+            
+            
 class Solution:
     def longestOnes(self, A: List[int], K: int) -> int:
         left = 0
