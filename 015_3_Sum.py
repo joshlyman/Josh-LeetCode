@@ -1,5 +1,42 @@
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
+        nums = sorted(nums)
+        results = []
+        
+        for i in range(len(nums)):
+            if i > 0 and nums[i] == nums[i-1]:
+                continue 
+            
+            self.find_two_sums(nums,i+1, len(nums)-1, -nums[i], results)
+            
+        return results 
+    
+    
+    def find_two_sums(self,nums,left,right, target, results):
+        while left < right:
+            if nums[left] + nums[right] == target:
+                results.append([-target, nums[left], nums[right]])
+                right -=1
+                left +=1
+                while left < right and nums[left] == nums[left-1]:
+                    left +=1
+                while left < right and nums[right] == nums[right+1]:
+                    right -=1
+                
+            elif nums[left] + nums[right] > target:
+                right -=1
+            else:
+                left +=1
+                
+# Time: O(n^2): O(n^2) + Sorting: O(nlogn)
+# Space: O(n): possible O(logn)
+           
+                
+        
+
+
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
         # first sort arrays then use 2 Sum II 2 pointers or 2 Sum hash table to do   
         res = []
         nums.sort()

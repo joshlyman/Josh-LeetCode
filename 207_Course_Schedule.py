@@ -1,3 +1,42 @@
+# https://www.jiuzhang.com/problem/course-schedule/
+
+class Solution:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        
+        # prerequisites = [[1,0]] 
+        # 0 -> 1 
+        graph = [[] for i in range(numCourses)]
+        in_degree = [0] * numCourses
+        
+        for node_in, node_out in prerequisites:
+            graph[node_out].append(node_in)
+            in_degree[node_in] +=1
+        
+        num_choose = 0
+        queue = collections.deque()
+        
+        # put the node with 0 indegree into queue 
+        for i in range(numCourses):
+            if in_degree[i] == 0:
+                queue.append(i)
+        
+        # 0 has 0 indegree, 0:[1]
+        while queue:
+            now_pos = queue.popleft()
+            num_choose +=1
+            
+            # delete each neighbour pos from in_degree, if indegree is 0, then add into queue 
+            for next_pos in graph[now_pos]:
+                # [1]: indegree from 1 to 0 
+                in_degree[next_pos] -=1
+                
+                if in_degree[next_pos] == 0:
+                    queue.append(next_pos)
+        
+        return num_choose == numCourses
+
+
+
 # refer from:
 # https://leetcode.com/problems/course-schedule/solution/
 
@@ -44,7 +83,9 @@ class Solution:
         path[currCourse] = False
         return ret 
     
-    
+# Time: O(|E| +|V|) 
+# Space:O(|E| +|V|) 
+   
     
 # Time: O(∣E∣+∣V∣^2), where ∣E∣ is the number of dependencies, ∣V∣ is the number of courses and dd is the maximum length of acyclic paths in the graph.
 

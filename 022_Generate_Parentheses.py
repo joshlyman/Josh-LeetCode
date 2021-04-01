@@ -1,32 +1,36 @@
 class Solution:
     def generateParenthesis(self, n: int) -> List[str]:
-        if n == 0:
-            return []
         
-        result = []
         
-        self.helper(n,n,"",result)
+        # remaining # of ( must be > # of )
+        path = []
+        results = []
+        self.dfs(path,results,0,0,n,n)
         
-        return result
+        return results
+        
+        # path, para,results, remain # of (, remain # of ), current # of (, current # of )
+        
     
-        
-    def helper(self,l,r,item,result):
-        
-        # l and r means # of remaining parenthesis 
-        # l must always larger than r because left parathesis should always have more than right one 
-        
-        if r < l:
+    def dfs(self,path,results,leftCur,rightCur,leftRem,rightRem):
+        if leftRem < 0 or rightRem < 0:
             return 
         
-        if l == 0 and r == 0:
-            result.append(item)
-            
-        if l>0:
-            self.helper(l-1,r,item+"(", result)
+        if rightCur > leftCur:
+            return  
         
-        if r>0:
-            self.helper(l,r-1,item+")", result)
+        if leftRem == 0 and rightRem == 0:
+            results.append("".join(path))
+             
+        path.append("(")
+        self.dfs(path,results,leftCur+1,rightCur,leftRem-1,rightRem)
+        path.pop()
 
+        path.append(")")
+        self.dfs(path,results,leftCur,rightCur+1,leftRem,rightRem-1)
+        path.pop()
+
+# https://www.jiuzhang.com/problem/generate-parentheses/
 # https://leetcode.com/problems/generate-parentheses/solution/
 
 # Time: O(4^n/sqrt(n))

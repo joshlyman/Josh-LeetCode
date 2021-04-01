@@ -2,6 +2,42 @@
 
 class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        if not candidates:
+            return 
+        
+        candidates.sort()
+        
+        paths = []
+        results = []
+        index = 0
+        cursum = 0
+        
+        # paths, results, index, candidates, cursum, target
+        self.dfs(paths,results,index,candidates,cursum, target)
+        
+        return results
+        
+    def dfs(self,paths, results,index,candidates,cursum,target):
+        if cursum > target:
+            return 
+        
+        # append path must use list to new a paths 
+        if cursum == target:
+            results.append(list(paths))
+            return 
+        
+        for i in range(index,len(candidates)):
+            paths.append(candidates[i])
+            cursum += candidates[i]
+            self.dfs(paths,results,i,candidates,cursum,target) 
+            paths.pop()
+            cursum -= candidates[i]
+            
+ # https://www.jiuzhang.com/problem/combination-sum/           
+
+
+class Solution:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
         
         results = []
         

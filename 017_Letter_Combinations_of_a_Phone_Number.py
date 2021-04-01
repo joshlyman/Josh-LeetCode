@@ -10,23 +10,35 @@ class Solution:
                  '8': ['t', 'u', 'v'],
                  '9': ['w', 'x', 'y', 'z']}
         
-        res = []
+        # different with permutations, need to add index to record the location, we dont want all combinations because order matters, index dont need to be recovered, we dont need to record used sets because based on index, not possible to reuse, so index can replace used, we need to recover index   
+        # index, path, used, candidates, results
+        index = 0
+        path = []
+        results = []
         
-        def backtrack(combination,next_digits):
-            # if there is no more digits to check, then combination is done 
-            if len(next_digits) ==0:
-                res.append(combination)
-            else:
-                # iterate over all letters which map 
-                # the next available digit
-                for letter in phone[next_digits[0]]:
-                    # append the current letter to the combination
-                    # and proceed to the next digits
-                    backtrack(combination + letter,next_digits[1:])
-       
-        if digits:
-            backtrack("",digits)
-        return res 
+        if not digits:
+            return []
+        
+        def dfs(index,path):
+            if index == len(digits):
+                results.append("".join(path))
+                return 
+                
+            for letter in phone[digits[index]]:         
+                path.append(letter)
+                index +=1
+                dfs(index,path)
+                index -=1
+                path.pop()
+        
+        dfs(index,path)                        
+        return results                  
+                              
+            
+                              
+                        
+        
+# https://www.jiuzhang.com/problem/letter-combinations-of-a-phone-number/     
         
 # Time: O(3^N x 4^M), where N is the number of digits in the input that maps to 3 letters (e.g. 2, 3, 4, 5, 6, 8) and 
 # M is the number of digits in the input that maps to 4 letters (e.g. 7, 9), and N+M is the total number digits in the input.

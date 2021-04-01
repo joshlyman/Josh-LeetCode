@@ -1,33 +1,26 @@
 # Longest Substring Without Repeating Characters
-
-class Solution(object):
-    def lengthOfLongestSubstring(self, s):
-        """
-        :type s: str
-        :rtype: int
-        """
-        start = -1
-        max = 0
-
-        # store element and its index 
-        d = {}
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
         
-        # abcadb 
-        # start = 0
-        # d[a] =3
-        # d[d] = 4
-        # 4-0 = 4
-        for i in range(len(s)):
-            if s[i] in d and d[s[i]]>start:
-                # reset the start index if meet same elements again 
-                start = d[s[i]]
-                d[s[i]] = i
-            else:
-                d[s[i]] = i
-                if i - start > max:
-                    max = i -start 
-                    
-        return max 
+        window = set()
+        
+        # pointer of sliding window, if find the char in window, then need to move pointer to right to remove all chars until remove this char  
+        left = 0
+        max_len = 0
+        cur_len = 0 
+        
+        for ch in s:
+            while ch in window:
+                window.remove(s[left])
+                left +=1
+                cur_len -=1
+        
+            window.add(ch)
+            cur_len +=1
+            max_len = max(max_len,cur_len)
+        
+        return max_len 
+        
 
 # time: O(n)
 # space: O(n)
